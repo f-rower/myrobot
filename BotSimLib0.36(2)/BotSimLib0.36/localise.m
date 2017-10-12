@@ -56,7 +56,7 @@ while(converged == 0 && n < maxNumOfIterations) %%particle filter loop
         botSim.drawMap(); %drawMap() turns hold back on again, so you can draw the bots
         botSim.drawBot(30,'g'); %draw robot with line length 30 and green
         for i =1:num
-            particles(i).drawBot(3); %draw particle with line length 3 and default color
+            particles(i).drawParticle(3); %draw particle with line length 3 and default color
         end
         drawnow;
     end

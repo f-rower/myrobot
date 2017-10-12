@@ -308,6 +308,15 @@ classdef BotSim < handle
             plot([bot.pos(1) bot.pos(1)+bot.dir(1)*lineLength],[bot.pos(2) bot.pos(2)+bot.dir(2)*lineLength],col);
         end
         
+        function drawParticle(bot,lineLength,col)
+            if nargin <3
+                col = 'b'; %default color
+            end
+            %             plot(bot.pos(1),bot.pos(2),'Marker','o','Color',col);
+            plot(bot.pos(1),bot.pos(2),'.');
+            plot([bot.pos(1) bot.pos(1)+bot.dir(1)*lineLength],[bot.pos(2) bot.pos(2)+bot.dir(2)*lineLength],col);
+        end
+        
         function drawScanConfig(bot)
             drawLines(bot.scanLines,'g');
         end
