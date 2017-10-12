@@ -1,5 +1,5 @@
 function [botSim] = localise(botSim,map,target)
-%This function returns botSim, and accepts, botSim, a map and a target.
+%This function returns BotSim, and accepts, botSim, a map and a target.
 %LOCALISE Template localisation function
 
 %% setup code
@@ -8,15 +8,17 @@ modifiedMap = map; %you need to do this modification yourself
 botSim.setMap(modifiedMap);
 
 %generate some random particles inside the map
-num =300; % number of particles
+density = 0.03;
+num =round((max(map(:,1)) - min(map(:,1)))*(max(map(:,2)) - min(map(:,2)))*density); % number of particles. HOW DO I DETERMINE THIS?
+disp(num);
 particles(num,1) = BotSim; %how to set up a vector of objects
 for i = 1:num
     particles(i) = BotSim(modifiedMap);  %each particle should use the same map as the botSim object
-    particles(i).randomPose(0); %spawn the particles in random locations
+    particles(i).randomPose(5); %spawn the particles in random locations. Argument is distance from the walls
 end
 
 %% Localisation code
-maxNumOfIterations = 30;
+maxNumOfIterations = 1;
 n = 0;
 converged =0; %The filter has not converged yet
 while(converged == 0 && n < maxNumOfIterations) %%particle filter loop
