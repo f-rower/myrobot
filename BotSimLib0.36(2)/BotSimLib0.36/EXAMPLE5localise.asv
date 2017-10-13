@@ -19,7 +19,7 @@ target = botSim.getRndPtInMap(10);  %gets random target.
 
 tic %starts timer
 %% your localisation function is called here.
-[returnedBot,partData] = localise(botSim,map,target); %Where the magic happens
+returnedBot = localise(botSim,map,target); %Where the magic happens
 
 resultsTime = toc %stops timer
 

@@ -19,10 +19,10 @@ disp('By default the sensor is set up to scan in 6 places');
 input('Press enter to scan:');
 disp('-------------------------------------------------------------------');
 disp(' ');
-[distance crossingPoint]  = botSim.ultraScan() %perfoms simulated ultrasound scan
+[distance]  = botSim.ultraScan() %perfoms simulated ultrasound scan
 botSim.drawScanConfig(); %draws current scan configuration
 botSim.drawBot(3);
-scatter(crossingPoint(:,1),crossingPoint(:,2),'marker','o','lineWidth',3); %draws crossingpoints
+%scatter(crossingPoint(:,1),crossingPoint(:,2),'marker','o','lineWidth',3); %draws crossingpoints
 
 disp('As you can see, the measured distance straight down is 40cm, as you would expect.');
 disp('The crossing point is marked as the blue O.');
@@ -66,7 +66,7 @@ disp(' ');
 botSim.turn(-pi/4);
 botSim.move(10);
 clf; axis equal; hold on; botSim.drawMap();  %resets drawing area
-botSim.drawScanConfig();  %draws the scan configuration to verify it is correct
+botSim.drawScanConfig();%draws the scan configuration to verify it is correct
 botSim.drawBot(3);
 %You can now try scanning again with the new configuration
 [distance crossingPoint]  = botSim.ultraScan()
