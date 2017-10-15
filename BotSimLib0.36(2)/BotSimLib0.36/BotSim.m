@@ -305,7 +305,7 @@ classdef BotSim < handle
             end
             %             plot(bot.pos(1),bot.pos(2),'Marker','o','Color',col);
             plot(bot.pos(1),bot.pos(2),'o');
-            plot([bot.pos(1) bot.pos(1)+bot.dir(1)*lineLength],[bot.pos(2) bot.pos(2)+bot.dir(2)*lineLength],col);
+            plot([bot.pos(1) bot.pos(1)+bot.dir(1)*lineLength],[bot.pos(2) bot.pos(2)+bot.dir(2)*lineLength],col,'markersize', 5);
         end
         
         function drawParticle(bot,lineLength,col)
@@ -314,7 +314,7 @@ classdef BotSim < handle
             end
             %             plot(bot.pos(1),bot.pos(2),'Marker','o','Color',col);
             plot(bot.pos(1),bot.pos(2),'.');
-            plot([bot.pos(1) bot.pos(1)+bot.dir(1)*lineLength],[bot.pos(2) bot.pos(2)+bot.dir(2)*lineLength],col);
+            plot([bot.pos(1) bot.pos(1)+bot.dir(1)*lineLength],[bot.pos(2) bot.pos(2)+bot.dir(2)*lineLength],col,'markersize',3);
         end
         
         function drawScanConfig(bot)
