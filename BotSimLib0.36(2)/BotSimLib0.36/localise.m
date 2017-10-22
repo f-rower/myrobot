@@ -103,12 +103,10 @@ for i = 1:size(partLoc,2)
     end
 end
 cumProb
-if cumProb > 0.6
-    saveshift = 1;
-end
-if cumProb > 0.9
+if cumProb > 0.95
     fprintf ("let's plan the paaaaath")
     converged = 1;
+    break
 end
     %% Write code for resampling your particles. Here partLoc (4,:) will add up to more than 1.
     ProbMean = mean (partLoc(4,:)); %Find mean of all probabilities
@@ -166,9 +164,10 @@ end%Localise robot (position + orientation)
  
 function move %Move the robot while not converged
      %% Write code to decide how to move next
-    [maxdist index] = max(botScan);
+     if converged ==0
+    [maxdist, index] = max(botScan);
     turn = (index-1)*2*pi/nangscans;
-    move = 0.1*max(botScan);
+    move = 0.1*maxdist;
     botSim.turn(turn); %turn the real robot.  
     botSim.move(move); %move the real robot. These movements are recorded for marking 
     for i =1:num %for all the particles. 
@@ -179,6 +178,7 @@ function move %Move the robot while not converged
         end
     end 
     draw
+     end
         %only draw if you are in debug mode or it will be slow during marking
 end
 % function pathplanning
@@ -194,7 +194,7 @@ function draw
     if botSim.debug()
         figure
         hold off; %the drawMap() function will clear the drawing when hold is off
-        subplot(1,2,1)
+%         subplot(1,2,1)
         botSim.drawMap(); %drawMap() turns hold back on again, so you can draw the bots
         %botSim.drawBot(30,'g'); %draw robot with line length 30 and green
         botSim.drawBot('g')
@@ -212,8 +212,8 @@ function draw
 %             end
         end
         drawnow;
-        subplot(1,2,2);
-        plot(1:num,partLoc(4,:))
+%         subplot(1,2,2);
+%         plot(1:num,partLoc(4,:))
     end
 end
 end
