@@ -7,7 +7,7 @@ modifiedMap = map; %you need to do this modification yourself
 botSim.setMap(modifiedMap);
 nangscans =20; %number of angular scans
 %sigma = 5; %standard deviation
-maxNumOfIterations = 5;
+maxNumOfIterations = 6;
 %% Define the particles. Generate some random particles inside the map. Depends on total size of map
 density = 0.02;
 num =round((max(map(:,1)) - min(map(:,1)))*(max(map(:,2)) - min(map(:,2)))*density); % number of particles. HOW DO I DETERMINE THIS?
@@ -106,7 +106,7 @@ cumProb
 if cumProb > 0.6
     saveshift = 1;
 end
-if cumProb > 0.9
+if cumProb > 0.95
     fprintf ("let's plan the paaaaath")
     converged = 1;
 end
@@ -168,15 +168,12 @@ function move %Move the robot while not converged
      %% Write code to decide how to move next
     [maxdist index] = max(botScan);
     turn = (index-1)*2*pi/nangscans;
-    move = 0.1*max(botScan);
+    move = 0.5*max(botScan);
     botSim.turn(turn); %turn the real robot.  
     botSim.move(move); %move the real robot. These movements are recorded for marking 
     for i =1:num %for all the particles. 
         particles(i).turn(turn); %turn the particle in the same way as the real robot
         particles(i).move(move); %move the particle in the same way as the real robot
-        if particles(i).pointInsideMap(particles(i).getBotPos)==0
-            particles(i).randomPose(1)
-        end
     end 
     draw
         %only draw if you are in debug mode or it will be slow during marking
