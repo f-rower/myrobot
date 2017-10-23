@@ -55,7 +55,7 @@ botLoc = [52 23];
 
 %Target will be manually set here as well just for testing
 
-target = [222,72];
+target = [11,8];
 % Find closest legal node in the array and set it as the starting node
 
 legalArray(locArray(3,loc),locArray(4,loc));%These are the indices of the starting node
