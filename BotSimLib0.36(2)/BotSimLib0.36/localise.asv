@@ -39,7 +39,6 @@ move
 end
 fprintf("I have localised the robot")
 pathplanning
-movebottopath
 % 
 % while Ihaventreachedthetarget
 % movebottopath
@@ -345,7 +344,7 @@ while 1
    % plot(AstarArray(curripos,currjpos,4),AstarArray(curripos,currjpos,5),'s')
 end
 plot(AstarArray(curripos,currjpos,4),AstarArray(curripos,currjpos,5),'s')
-while 1
+%while 1
     curriposold = curripos;
     currjposold = currjpos;
     curripos = AstarArray(curriposold,currjposold,2);%Set curripos and currjpos as the parent node
@@ -357,10 +356,9 @@ while 1
 end
 
 end 
-function movebottopath
-    fprintf("I'm moving towards the path");
-    
-end
+% function movebottopath
+%     fprintf("I'm moving towards the path");
+% end
 % function moveparticles
 %     fprintf("I'm moving particles towards the robot");
 % end 
